@@ -32,21 +32,22 @@ public class SpringBootMockitoApplicationTests {
 	@Test
 	public void getEmployeesTest() {
 		when(repository.findAll()).thenReturn(Stream
-				.of(new Employee(376, "Thapa Suman", 31, "Nepal"), new Employee(958, "Demo", 35, "Nepal")).collect(Collectors.toList()));
+				.of(new Employee(376, "Thapa Suman", 31, "Nepal"),
+						new Employee(958, "Demo", 35, "Nepal")).collect(Collectors.toList()));
 		assertEquals(2, service.getEmployees().size());
 	}
 
 	@Test
 	public void getEmployeebyAddressTest() {
-		String address = "Kathmandu";
+		String address = "Nepal";
 		when(repository.findByAddress(address))
-				.thenReturn(Stream.of(new Employee(376, "Anil", 31, "Nepal")).collect(Collectors.toList()));
+				.thenReturn(Stream.of(new Employee(376, "Pradeep", 31, "Nepal")).collect(Collectors.toList()));
 		assertEquals(1, service.getEmployeebyAddress(address).size());
 	}
 
 	@Test
 	public void saveEmployeeTest() {
-		Employee employee = new Employee(999, "Ram", 33, "India");
+		Employee employee = new Employee(999, "pradeep 2", 33, "Asia");
 		when(repository.save(employee)).thenReturn(employee);
 		assertEquals(employee, service.addEmployee(employee));
 	}
